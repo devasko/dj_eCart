@@ -1,8 +1,15 @@
+.gitignore
 *.log
 *.pot
 *.pyc
+.env
+.venv
+env/
+venv/
 __pycache__/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
+category/__pycache__/
+category/migrations/__pycache__/
