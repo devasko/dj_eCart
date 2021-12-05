@@ -9,10 +9,10 @@
     <!-- ============================ COMPONENT 1 ================================= -->
 
     {% if not cart_items %}
-        <h2 class="text-center">Your shopping cart is empty</h2>
+        <h2 class="text-center">Ваша корзина пуста</h2>
         <br>
         <div class="text-center">
-            <a href="{% url 'store' %}" class="btn btn-primary">Continue shopping</a>
+            <a href="{% url 'store' %}" class="btn btn-primary">Продолжить покупки</a>
         </div>
     {% else %}
         <div class="row">
@@ -21,9 +21,9 @@
     <table class="table table-borderless table-shopping-cart">
     <thead class="text-muted">
     <tr class="small text-uppercase">
-      <th scope="col">Product</th>
-      <th scope="col" width="120">Quantity</th>
-      <th scope="col" width="120">Price</th>
+      <th scope="col">Товар</th>
+      <th scope="col" width="120">Количество</th>
+      <th scope="col" width="120">Цена</th>
       <th scope="col" class="text-right" width="200"> </th>
     </tr>
     </thead>
@@ -36,7 +36,7 @@
                 <div class="aside"><img src="{{ cart_item.product.image.url }}" class="img-sm"></div>
                 <figcaption class="info">
                     <a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.title }}</a>
-                    <p class="small text-muted">color: CUH-ZCT2E  <br> Size: Sony</p>
+                    <p class="small text-muted">Цвет: CUH-ZCT2E  <br> Размер: Sony</p>
                 </figcaption>
             </figure>
         </td>
@@ -56,12 +56,12 @@
         </td>
         <td>
             <div class="price-wrap">
-                <var class="price">$ {{ cart_item.sub_total }}</var>
-                <small class="text-muted"> $ {{ cart_item.product.price }} each</small>
+                <var class="price"> {{ cart_item.sub_total }} ₽</var>
+                <small class="text-muted">{{ cart_item.product.price }} ₽ за шт.</small>
             </div> <!-- price-wrap .// -->
         </td>
         <td class="text-right">
-            <a href="{% url 'remove_cart_item' cart_item.product.id %}" class="btn btn-danger"> Remove</a>
+            <a href="{% url 'remove_cart_item' cart_item.product.id %}" class="btn btn-danger"> Удалить</a>
         </td>
     </tr>
     {% endfor %}
@@ -75,16 +75,16 @@
             <div class="card">
             <div class="card-body">
                 <dl class="dlist-align">
-                  <dt>Total price:</dt>
-                  <dd class="text-right">$ {{ total }}</dd>
+                  <dt>Цена:</dt>
+                  <dd class="text-right">{{ total }} ₽</dd>
                 </dl>
                 <dl class="dlist-align">
-                  <dt>Tax:</dt>
-                  <dd class="text-right"> $ {{ tax }}</dd>
+                  <dt>Скидка:</dt>
+                  <dd class="text-right">{{ tax }} ₽</dd>
                 </dl>
                 <dl class="dlist-align">
-                  <dt>Grand total:</dt>
-                  <dd class="text-right text-dark b"><strong>$ {{ grand_total }}</strong></dd>
+                  <dt>Итого:</dt>
+                  <dd class="text-right text-dark b"><strong>{{ grand_total }} ₽</strong></dd>
                 </dl>
                 <hr>
                 <p class="text-center mb-3">
