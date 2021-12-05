@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from store.models import Product
 from .models import Cart, CartItem
 from django.http import HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def _cart_id(request):
@@ -51,8 +52,6 @@ def remove_cart_item(request, product_id):
     return redirect('cart')
 
 
-
-
 def cart(request, total=0, quantity=0, cart_items=None):
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
@@ -63,7 +62,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
         tax = (2 * total)/100
         grand_total = total + tax
 
-    except ObjectNotExist:
+    except ObjectDoesNotExist:
         pass
 
     context = {
