@@ -53,11 +53,15 @@ def search(request):
         if keyword:
             products = Product.objects.order_by('-created_date').filter(Q(title__icontains=keyword) | Q(description__icontains=keyword))
             products_count = products.count()
+        else:
+            keyword = ''
+            products = Product.objects.all().order_by('id')
+            products_count = products.count()
 
-            context = {
-                'products': products,
-                'products_count': products_count,
-                'keyword': keyword,
-            }
+    context = {
+        'products': products,
+        'products_count': products_count,
+        'keyword': keyword,
+    }
 
     return render(request, 'store/store.html', context)
